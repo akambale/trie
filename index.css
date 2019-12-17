@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+li {
+  list-style-type: none;
+  padding-left: 5px;
+  padding-bottom: 3px;
+  padding: 0px 15px;
+}
+
+li:hover {
+  background-color: lightblue;
+}
+
+input {
+  width: 100%;
+  padding-left: 5px;
+  border: none;
+  background-color: none;
+  outline: none;
+  font-size: 16px;
+  padding: 0px 15px;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+.code {
+  font-family: monospace;
+  color: red;
+}
+
+#search-box {
+}
+
+.search-results {
+  border-radius: 25px;
+  overflow: hidden;
+  width: 500px;
+  box-shadow: 0px 4px 9px grey;
+  padding: 10px 0px;
+}

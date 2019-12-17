@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Trie Demo</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>Trie Demo</h1>
+    <section>
+      <button id="btn" onclick="populateTree()">
+        click here to populate trie with the 10,000 most common english words
+      </button>
+      <p>
+        Note that the population is significantly slowed down for dramatic
+        effect
+      </p>
+      <p>
+        Open the console and check out <span class="code">window.trie</span> for
+        yourself
+      </p>
+    </section>
+
+    <section>
+      <div>
+        <p>Nodes Added to Trie: <span id="total__nodes">0</span></p>
+        <p>Words Added to Trie: <span id="total__words">0</span></p>
+        <p>Greatest Trie Depth: <span id="total__depth">0</span> nodes</p>
+      </div>
+    </section>
+    <section class="search-results">
+      <form autocomplete="off" id="form">
+        <input
+          id="input"
+          type="text"
+          placeholder="start typing to search dictionary trie for words"
+          oninput="search()"
+          onkeydown="() => e.preventDefault()"
+        />
+      </form>
+      <ul id="search-box"></ul>
+    </section>
+    <script src="dictionary.js" type="text/javascript"></script>
+    <script src="index.js" type="text/javascript"></script>
+    <script src="trie.js" type="text/javascript"></script>
+  </body>
+</html>
