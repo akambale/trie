@@ -135,5 +135,5 @@ document.getElementById('form').addEventListener(
 );
 
 console.log(
-  'psst . . . check out the source code at https://github.com/akambale/trie',
+  'psst, check out the source code at https://github.com/akambale/trie',
 );

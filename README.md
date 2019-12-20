@@ -2,7 +2,7 @@
 
 tl;dr - I briefly looked up what a trie was, and upon a reading one sentence, I decided to implement one without referencing any documentation or reading best practices. I hope to demonstrate my ability to handle ambiguously in software engineering challenges.
 
-See a live implementation of this trie search linked [here](www.google.com).
+See a live implementation of this trie search linked [here](https://akambale.github.io/trie/).
 
 ## Some companies are bad at front-end interviewing
 
@@ -13,10 +13,15 @@ I understand the purpose of this, it's a good way to gauge a candidates front-en
 A few months ago, in an interview, I was asked the following question:
 
 **Interviewer:** "Imagine you are building Google's search page. How do you update search results when the user changes their input?"
+
 **Me:** "Make another request with the new search string"
+
 **Interviewer:** "But that's pretty slow, how do we show the user feedback right away?"
+
 **Me:** _shrugs_
+
 **Interviewer:** "Well, we can save an extra amount of potential search data from the first query. For example, if the user input start with the letter a, we can send all search phrases to the client that start with the letter a."
+
 **Me:** "Oh that makes sense, then as they update the search input, we can further filter from our previously fetched search phrases"
 
 I was annoyed by the question. My first and second engineering jobs were at data companies where the most critical thing was manipulating and displaying data. I never needed to build a search functionality where performance was critical to the UX. Besides, if I had built Google's search page, I wouldn't be here interviewing at your company, I’d be drinking moon juice with President Jonathan Taylor Thomas.
@@ -98,4 +103,4 @@ To truly demo the trie, I needed to create a search suggestion function; a metho
 
 But since we are implementing a dictionary search, random search results won't cut it. Because the trie only has a maximum depth of 19 nodes, I was confident that the recursive search method would terminate quickly, even if we found 10,000 search results. I then sorted the results first by length, and then by alphabetical order. Now, searching "ca" will return results like "can, cap, car, cat, cant, cart, cast." See this method `findTenValidChildWords` in `trie.js`.
 
-Check out a live implementation of this trie search linked [here](www.google.com). You can load the 10K most common words in the english language according to google [(shamelessly stolen from this repo)](https://github.com/first20hours/google-10000-english) into a trie and try searching it. Or, create your own trie in the console!
+Check out a live implementation of this trie search linked [here](https://akambale.github.io/trie/). You can load the 10K most common words in the english language according to google [(shamelessly stolen from this repo)](https://github.com/first20hours/google-10000-english) into a trie and try searching it. Or, create your own trie in the console!
