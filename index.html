@@ -6,44 +6,111 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Trie Demo</title>
     <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Trie Demo</h1>
     <section>
-      <button id="btn" onclick="populateTree()">
-        click here to populate trie with the 10,000 most common english words
-      </button>
-      <p>
-        Note that the population is significantly slowed down for dramatic
-        effect
-      </p>
-      <p>
-        Open the console and check out <span class="code">window.trie</span> for
-        yourself
-      </p>
+      <h1>
+        <span class="blue">T</span>
+        <span class="red">r</span>
+        <span class="yellow">i</span>
+        <span class="green">e</span>
+        &nbsp;
+        <span class="red">D</span>
+        <span class="blue">e</span>
+        <span class="green">m</span>
+        <span class="yellow">o</span>
+      </h1>
     </section>
 
     <section>
+      <h3>Instructions</h3>
+    </section>
+
+    <section class="instructions">
+      <ol>
+        <li>
+          Click
+          <button
+            class="btn-start instructions__button"
+            onclick="populateTrie()"
+          >
+            here
+          </button>
+          to populate the trie with the 10,000 most common english words
+          (according to Google)
+        </li>
+        <li>
+          Watch as the trie is populated with words (note that the population is
+          slowed down for dramatic effect)
+        </li>
+        <li>Start searching the trie for words</li>
+      </ol>
+      <p>OR</p>
+      <ol>
+        <li>
+          Open the console and check out
+          <span class="instructions__code">window.trie</span>
+        </li>
+        <li>
+          Add additional words manually with the following code:
+          <span class="instructions__code">
+            window.trie.addChild('YOUR_WORD_HERE');
+          </span>
+        </li>
+        <li>Start searching the trie for words</li>
+      </ol>
+    </section>
+
+    <section class="specs">
       <div>
-        <p>Nodes Added to Trie: <span id="total__nodes">0</span></p>
-        <p>Words Added to Trie: <span id="total__words">0</span></p>
-        <p>Greatest Trie Depth: <span id="total__depth">0</span> nodes</p>
+        <p>Nodes Added to Trie</p>
+        <p>Words Added to Trie</p>
+        <p>Greatest Trie Depth</p>
+      </div>
+      <div></div>
+      <div class="specs__nums">
+        <p id="total__nodes">0</p>
+        <p id="total__words">0</p>
+        <p id="total__depth">0</p>
+      </div>
+      <div></div>
+    </section>
+    <section>
+      <div class="search-results">
+        <form autocomplete="off" id="form">
+          <svg
+            focusable="false"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+            ></path>
+          </svg>
+
+          <input
+            id="input"
+            type="text"
+            oninput="search()"
+            onkeydown="() => e.preventDefault()"
+          />
+        </form>
+        <ul id="search-box"></ul>
+      </div>
+      <div id="btn-container">
+        <button class="btn-start" onclick="populateTrie()">
+          Populate Trie
+        </button>
+        <button onclick="resetTrie()">Reset</button>
       </div>
     </section>
-    <section class="search-results">
-      <form autocomplete="off" id="form">
-        <input
-          id="input"
-          type="text"
-          placeholder="start typing to search dictionary trie for words"
-          oninput="search()"
-          onkeydown="() => e.preventDefault()"
-        />
-      </form>
-      <ul id="search-box"></ul>
-    </section>
-    <script src="dictionary.js" type="text/javascript"></script>
-    <script src="index.js" type="text/javascript"></script>
-    <script src="trie.js" type="text/javascript"></script>
   </body>
+  <script src="dictionary.js" type="text/javascript"></script>
+  <script src="index.js" type="text/javascript"></script>
+  <script src="trie.js" type="text/javascript"></script>
+  <script src="search.js" type="text/javascript"></script>
 </html>

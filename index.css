@@ -1,26 +1,82 @@
 * {
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-li {
-  list-style-type: none;
-  padding-left: 5px;
-  padding-bottom: 3px;
-  padding: 0px 15px;
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 900px;
 }
 
-li:hover {
-  background-color: lightblue;
+h1 {
+  font-size: 60px;
+  padding-top: 100px;
 }
 
-input {
-  width: 100%;
-  padding-left: 5px;
-  border: none;
-  background-color: none;
-  outline: none;
+h1 > .red {
+  color: #db4437;
+}
+h1 > .blue {
+  color: #4285f4;
+}
+h1 > .green {
+  color: #0f9d58;
+}
+h1 > .yellow {
+  color: #f4b400;
+}
+
+section {
+  margin-bottom: 25px;
+}
+
+.instructions {
+  display: grid;
+  grid-template-columns: 45% 10% 45%;
+}
+
+.instructions__button {
+  margin: 0;
+  padding: 0 4px;
+  width: auto;
+}
+
+.instructions > p {
+  align-self: center;
+  justify-self: center;
+}
+
+.instructions__code {
+  color: red;
+  font-family: monospace;
   font-size: 16px;
-  padding: 0px 15px;
+}
+
+ol > li {
+  margin-left: 20px;
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: 48% 2% 5% 45%;
+  text-align: right;
+  width: 100%;
+}
+
+.specs__nums {
+  text-align: right;
+}
+
+ul > li {
+  align-items: center;
+  display: flex;
+  list-style-type: none;
 }
 
 ul {
@@ -28,18 +84,65 @@ ul {
   margin: 0px;
 }
 
-.code {
-  font-family: monospace;
-  color: red;
-}
-
-#search-box {
+ul > li:hover {
+  background-color: lightblue;
 }
 
 .search-results {
   border-radius: 25px;
+  border: 1px solid lightgray;
   overflow: hidden;
-  width: 500px;
-  box-shadow: 0px 4px 9px grey;
   padding: 10px 0px;
+  width: 582px;
+}
+
+.search-results:hover {
+  box-shadow: 0px 4px 9px grey;
+}
+
+.search-results:active {
+  box-shadow: 0px 4px 9px grey;
+}
+
+form {
+  display: flex;
+}
+
+input {
+  background-color: none;
+  border: none;
+  font-size: 18px;
+  height: 30px;
+  outline: none;
+  width: 100%;
+}
+
+svg {
+  fill: gray;
+  height: 30px;
+  padding: 0 16px;
+}
+
+#btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: #f2f2f2;
+  border-radius: 3px;
+  border: 1px solid #f2f2f2;
+  font-size: 16px;
+  margin: 11px 4px;
+  padding: 8px 16px;
+  width: 145px;
+}
+
+button:hover {
+  border-color: #c6c6c6;
+}
+
+button:focus {
+  border: 1px solid blue;
+  outline: none;
 }
