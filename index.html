@@ -36,54 +36,59 @@
     />
   </head>
   <body>
-    <header>
-      <div>
-        <a onclick="toggleAbout()">About</a>
-        <a onclick="toggleInstructions()">Instructions</a>
+    <header class="header">
+      <div class="header__link-container">
+        <a class="link" onclick="toggleAbout()">About</a>
+        <a class="link" onclick="toggleInstructions()">Instructions</a>
       </div>
-      <div>
-        <a class="header--left" href="https://github.com/akambale/trie"
-          >Github Repo</a
-        >
-        <a class="header--left" href="http://amoghk.com">My Website</a>
+      <div class="header__link-container header__link-container--left">
+        <a class="link" href="https://github.com/akambale/trie">Github Repo</a>
+        <a class="link" href="http://amoghk.com">My Website</a>
       </div>
     </header>
-    <section id="info">
-      <div id="triangle">
+    <section id="info" class="info">
+      <div id="triangle" class="info__triangle">
         <div></div>
       </div>
-      <div id="instructions">
-        <ol>
-          <li>
+      <div id="instructions" class="info__instructions">
+        <ol class="info__instructions__list">
+          <li class="info__instructions__list__item">
             Click
-            <button class="btn-start info__button" onclick="populateTrie()">
+            <button
+              class="btn-populate info__instructions__button"
+              onclick="populateTrie()"
+            >
               here
             </button>
             to populate the trie with the 10,000 most common english words on
             the internet (according to Google)
           </li>
-          <li>
+          <li class="info__instructions__list__item">
             Watch as the trie is populated with words (note that the population
             is slowed down for dramatic effect)
           </li>
-          <li>Start searching below for words</li>
-        </ol>
-        <p>OR</p>
-        <ol>
-          <li>
-            Open the console and check out
-            <span class="info__code">window.trie</span>
+          <li class="info__instructions__list__item">
+            Start searching below for words
           </li>
-          <li>
+        </ol>
+        <p class="info__instructions__or">OR</p>
+        <ol>
+          <li class="info__instructions__list__item">
+            Open the console and check out
+            <span class="info__instructions__code">window.trie</span>
+          </li>
+          <li class="info__instructions__list__item">
             Add additional words manually with the following code:
-            <span class="info__code">
+            <span class="info__instructions__code">
               window.trie.addChild('YOUR_WORD_HERE');
             </span>
           </li>
-          <li>Start searching the trie for words</li>
+          <li class="info__instructions__list__item">
+            Start searching the trie for words
+          </li>
         </ol>
       </div>
-      <div id="about">
+      <div id="about" class="info__about">
         <p>
           A trie (pronounced the same as tree) is a data structure that makes
           searching for words faster. If that was too much computer science
@@ -113,9 +118,9 @@
           put this word into another <b>A</b> folder. Instead, we move on to the
           second letter of <i>and</i>, <b>N</b> how exciting! But as you might
           have guessed, inside the <b>N</b> folder, we have another set of
-          folders inside. Within that, we move into the <b>D</b> folder. At this
-          point, we have run out of letters, so we put our word inside. The path
-          looks like this: Magic Folder > A Folder > N Folder > D Folder.
+          folders. Within that, we move into the <b>D</b> folder. At this point,
+          we have run out of letters, so we put our word inside. The path looks
+          like this: Magic Folder > A Folder > N Folder > D Folder.
         </p>
         <p>
           When you click on the <i>populate trie</i> button below, each word in
@@ -123,13 +128,13 @@
           Now if I ask you to find the word <i>scholar</i>, it's much easier.
           You start by opening the <b>S</b> folder. Within that, you open the
           <b>C</b> folder. After that the <b>H</b> folder, and so on until you
-          find the word <i>scholar</i>. That was much faster than skimming the
-          entire list!
+          find the word <i>scholar</i>. Isn't this much faster than skimming the
+          entire list?
         </p>
       </div>
     </section>
     <section>
-      <h1>
+      <h1 class="heading-title">
         <span class="blue">T</span><span class="red">r</span
         ><span class="yellow">i</span><span class="green">e</span>
         &nbsp;
@@ -138,12 +143,13 @@
       </h1>
     </section>
     <section>
-      <div class="search-results">
-        <form autocomplete="off" id="form">
+      <div class="search">
+        <form autocomplete="off" id="form" class="search__form">
           <svg
+            class="search__icon"
             focusable="false"
-            xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
@@ -151,44 +157,51 @@
           </svg>
 
           <input
+            class="search__input"
             id="input"
-            type="text"
             oninput="search()"
-            onkeydown="() => e.preventDefault()"
+            type="text"
           />
         </form>
-        <ul id="search-box"></ul>
+        <div id="search__results" style="display: none;">
+          <div id="search__underline" class="search__underline"></div>
+          <ul id="search__results__list" class="search__results__list"></ul>
+          <div class="search__btn-container">
+            <button
+              class="search__button btn-populate"
+              onclick="populateTrie()"
+            >
+              Populate Trie
+            </button>
+            <button class="search__button" onclick="resetTrie()">Reset</button>
+          </div>
+        </div>
       </div>
-      <div id="btn-container">
-        <button class="btn-start" onclick="populateTrie()">
+      <div id="search__btn-container" class="search__btn-container">
+        <button class="search__button btn-populate" onclick="populateTrie()">
           Populate Trie
         </button>
-        <button onclick="resetTrie()">Reset</button>
+        <button class="search__button" onclick="resetTrie()">Reset</button>
       </div>
     </section>
-    <footer>
-      <div>
-        <div>
-          <p>
-            Nodes Added to Trie:
-            <span id="total__nodes">0</span>
-          </p>
-        </div>
-        <div>
-          <p>
-            Words Added to Trie:
-            <span id="total__words">0</span>
-          </p>
-        </div>
-        <div>
-          <p>
-            Greatest Trie Depth:
-            <span id="total__depth">0</span>
-          </p>
-        </div>
+    <footer class="footer">
+      <div class="footer__number__container">
+        <p>
+          Words Added to Trie:
+          <span class="footer__number" id="total__words">0</span>
+        </p>
+        <p>
+          Nodes Added to Trie:
+          <span class="footer__number" id="total__nodes">0</span>
+        </p>
+        <p>
+          Greatest Trie Depth:
+          <span class="footer__number" id="total__depth">0</span>
+        </p>
       </div>
-      <div>
+      <div class="footer__link__container">
         <a
+          class="link footer__link"
           href="https://github.com/first20hours/google-10000-english/blob/master/google-10000-english-no-swears.txt"
           >List of 10,000 Words</a
         >

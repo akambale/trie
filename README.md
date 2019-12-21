@@ -1,8 +1,8 @@
 # Trie Demo
 
-tl;dr - I briefly looked up what a trie was, and upon a reading one sentence, I decided to implement one without referencing any documentation or reading best practices. I hope to demonstrate my ability to handle ambiguously in software engineering challenges.
+tl;dr - I briefly looked up what a trie was, and upon a reading one sentence, I decided to implement one without referencing any documentation or reading best practices. I hope to demonstrate my ability to handle ambiguously in software engineering challenges. I also ended up spending a lot of time on the UI for this project.
 
-See a live implementation of this trie search linked [here](https://akambale.github.io/trie/).
+See the UI and a live implementation of this trie search linked [here](https://akambale.github.io/trie/).
 
 ## Some companies are bad at front-end interviewing
 
@@ -101,6 +101,12 @@ And the same tree after adding an input of "a" as well as "and"
 
 To truly demo the trie, I needed to create a search suggestion function; a method that would take your partial search string and suggest possible words you may be trying to type out. I arrived at a simple recursive one `oldSearchMethod` as seen in`trie.js`. It returns 10 search results before terminating. It picks those 10 results by going down all the child branches of the corresponding search string node. If there are more than 10 results, it chooses 10 from the first child branch that was created; i.e., it depends on which child key comes in order first. If _car_ was inserted into the trie before _cat_, then **r** will appear in order before **t** as a child branch and therefore, searching the string "ca" will return results for "car, care, career, careers".
 
-But since we are implementing a dictionary search, random search results won't cut it. Because the trie only has a maximum depth of 19 nodes, I was confident that an unrestricted recursive search method would traverse the entire sub-tree, find all matching child words, and terminate quickly; even if we found 10,000 search results. I then sorted the results first by length, and then by alphabetical order. Now, searching "ca" will return results like "can, cap, car, cat, cant, cart, cast." See this method `findTenValidChildWords` in `trie.js`.
+But since we are implementing a dictionary search, random search results won't cut it. Because the trie only has a maximum depth of 19 nodes, I was confident that an unrestricted recursive search method would traverse the entire sub-tree, find all matching child words, and terminate quickly; even if we found 5,000 search results. I then sorted the results first by length, and then by alphabetical order. Now, searching "ca" will return results like "can, cap, car, cat, cant, cart, cast." See this method `findTenValidChildWords` in `trie.js`.
+
+## The UI
+
+Since this project was inspired by trying to imitate the live search on the Google home page, I though I'd copy the style of the logo and search bar. But what was supposed to be a simple UI demo the project turned into a full Google homepage clone. If the scope of the project had always been as large, I would have opted to use React and SCSS.
+
+But since I started with Vanilla JS, CSS, and HTML, I stuck with and built the website like it was 2008! It was a fun exercise in raw DOM manipulation and a reminder of how the core APIs work. The cons of this method is that code organization tends to get a bit messy. I did my best to follow BEM for CSS and try to name my JS methods intuitively. The project is just small enough that you can still follow the code.
 
 Check out a live implementation of this trie search linked [here](https://akambale.github.io/trie/). You can load the 10K most common words in the english language according to google [(shamelessly stolen from this repo)](https://github.com/first20hours/google-10000-english) into a trie and try searching it. Or, create your own trie in the console!

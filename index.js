@@ -1,21 +1,24 @@
+// Elements that are selected and used repeatedly
+
+const depthEle = document.getElementById('total__depth');
+const wordEle = document.getElementById('total__words');
+const nodeEle = document.getElementById('total__nodes');
+const searchBox = document.getElementById('search__results');
+const searchList = document.getElementById('search__results__list');
+const input = document.getElementById('input');
+const svg = document.getElementsByTagName('svg')[0];
+const btnContainer = document.getElementById('search__btn-container');
+const info = document.getElementById('info');
+const instructions = document.getElementById('instructions');
+const about = document.getElementById('about');
+const triangle = document.getElementById('triangle');
+
 // Variables and methods to modify user feedback as
 // trie is being populated
 
 window.highestTrieDepth = 0;
 window.wordCount = 0;
 window.nodeCount = 0;
-
-const depthEle = document.getElementById('total__depth');
-const wordEle = document.getElementById('total__words');
-const nodeEle = document.getElementById('total__nodes');
-const searchBox = document.getElementById('search-box');
-const input = document.getElementById('input');
-const svg = document.getElementsByTagName('svg')[0];
-const btnContainer = document.getElementById('btn-container');
-const info = document.getElementById('info');
-const instructions = document.getElementById('instructions');
-const about = document.getElementById('about');
-const triangle = document.getElementById('triangle');
 
 const updateTrieDepth = () => {
   depthEle.innerHTML = window.highestTrieDepth;
@@ -33,7 +36,7 @@ const updateNodeCount = () => {
 
 // puts dictionary arr into trie
 const populateTrie = () => {
-  toggleStartButtons();
+  togglePopulateButtons();
 
   // the much faster way to populate the trie
   // window.dictionary.forEach(word => trie.addChild(word));
@@ -55,15 +58,16 @@ const resetTrie = () => {
   depthEle.innerHTML = wordEle.innerHTML = nodeEle.innerHTML = '0';
   window.highestTrieDepth = window.wordCount = window.nodeCount = 0;
   window.trie = new TrieNode('');
-  toggleStartButtons();
+  togglePopulateButtons();
 };
 
-const toggleStartButtons = () => {
-  const startButtons = document.getElementsByClassName('btn-start');
-  const changeTo = !startButtons[0].disabled;
+// enable and disable populate trie buttons
+const togglePopulateButtons = () => {
+  const populateButtons = document.getElementsByClassName('btn-populate');
+  const changeTo = !populateButtons[0].disabled;
 
-  for (let i = 0; i < startButtons.length; i++) {
-    startButtons[i].disabled = changeTo;
+  for (let i = 0; i < populateButtons.length; i++) {
+    populateButtons[i].disabled = changeTo;
   }
 };
 
@@ -73,32 +77,30 @@ const search = () => {
 
   const val = input.value.toLowerCase();
 
-  if (val.length === 0) {
-    clearSearch();
-    btnContainer.style.display = '';
-  } else {
+  if (val.length !== 0) {
     const words = findTenValidChildWords(val, window.trie);
 
-    words.forEach(word => {
-      const node = createLiTextNode(word, val);
-      searchBox.appendChild(node);
-    });
+    // if there are any search results
     if (words.length > 0) {
       btnContainer.style.display = 'none';
+      searchBox.style.display = '';
 
-      const div = document.createElement('DIV');
-      div.classList.add('search-results__underline');
-      searchBox.insertBefore(div, searchBox.firstChild);
-
-      const newBtnContainer = btnContainer.cloneNode(['deep']);
-      newBtnContainer.id = 'btn-container--new';
-      newBtnContainer.style.display = 'flex';
-      newBtnContainer.style['justify-content'] = 'center';
-      searchBox.appendChild(newBtnContainer);
-    } else {
-      btnContainer.style.display = '';
+      words.forEach(word => {
+        const node = createLiTextNode(word, val);
+        searchList.appendChild(node);
+      });
     }
   }
+};
+
+// clear search results for previous user input
+// hides and shows search box and btn container
+const clearSearch = () => {
+  while (searchList.firstChild) {
+    searchList.removeChild(searchList.firstChild);
+  }
+  btnContainer.style.display = '';
+  searchBox.style.display = 'none';
 };
 
 // helper function for search method
@@ -129,13 +131,6 @@ const splitWord = (searchStr, fullWord) => {
   return [first, second];
 };
 
-// clear search results for previous user input
-const clearSearch = () => {
-  while (searchBox.firstChild) {
-    searchBox.removeChild(searchBox.firstChild);
-  }
-};
-
 // adds an onclick method to each search list item
 const attachOnClick = (node, word) => {
   node.onclick = () => {
@@ -144,15 +139,9 @@ const attachOnClick = (node, word) => {
   };
 };
 
-document.getElementById('form').addEventListener(
-  'submit',
-  e => {
-    search(input);
-    e.preventDefault();
-  },
-  false,
-);
-
+// shows and hides the info section at the top
+// adjusts height to show the instructions or
+// about content
 const toggleInfo = () => {
   const infoIsVisible = info.style.display;
   info.style.height = '0px';
@@ -172,6 +161,7 @@ const toggleInfo = () => {
   }
 };
 
+// displays instructions and open/closes info section
 const toggleInstructions = () => {
   info.style.height = '120px';
   if (about.style.display !== 'flex' || info.style.display !== 'flex') {
@@ -183,6 +173,7 @@ const toggleInstructions = () => {
   about.style.display = 'none';
 };
 
+// displays instructions and open/closes about section
 const toggleAbout = () => {
   info.style.height = '222px';
   if (instructions.style.display !== 'grid' || info.style.display !== 'flex') {
@@ -194,6 +185,11 @@ const toggleAbout = () => {
   instructions.style.display = 'none';
 };
 
-console.log(
-  'psst, check out the source code at https://github.com/akambale/trie',
+document.getElementById('form').addEventListener(
+  'submit',
+  e => {
+    search(input);
+    e.preventDefault();
+  },
+  false,
 );
