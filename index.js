@@ -12,8 +12,10 @@ const searchBox = document.getElementById('search-box');
 const input = document.getElementById('input');
 const svg = document.getElementsByTagName('svg')[0];
 const btnContainer = document.getElementById('btn-container');
-
-const startButtons = document.getElementsByClassName('btn-start');
+const info = document.getElementById('info');
+const instructions = document.getElementById('instructions');
+const about = document.getElementById('about');
+const triangle = document.getElementById('triangle');
 
 const updateTrieDepth = () => {
   depthEle.innerHTML = window.highestTrieDepth;
@@ -31,8 +33,7 @@ const updateNodeCount = () => {
 
 // puts dictionary arr into trie
 const populateTrie = () => {
-  startButtons[0].disabled = true;
-  startButtons[1].disabled = true;
+  toggleStartButtons();
 
   // the much faster way to populate the trie
   // window.dictionary.forEach(word => trie.addChild(word));
@@ -54,8 +55,16 @@ const resetTrie = () => {
   depthEle.innerHTML = wordEle.innerHTML = nodeEle.innerHTML = '0';
   window.highestTrieDepth = window.wordCount = window.nodeCount = 0;
   window.trie = new TrieNode('');
-  startButtons[0].disabled = false;
-  startButtons[1].disabled = false;
+  toggleStartButtons();
+};
+
+const toggleStartButtons = () => {
+  const startButtons = document.getElementsByClassName('btn-start');
+  const changeTo = !startButtons[0].disabled;
+
+  for (let i = 0; i < startButtons.length; i++) {
+    startButtons[i].disabled = changeTo;
+  }
 };
 
 // input box search method
@@ -76,6 +85,16 @@ const search = () => {
     });
     if (words.length > 0) {
       btnContainer.style.display = 'none';
+
+      const div = document.createElement('DIV');
+      div.classList.add('search-results__underline');
+      searchBox.insertBefore(div, searchBox.firstChild);
+
+      const newBtnContainer = btnContainer.cloneNode(['deep']);
+      newBtnContainer.id = 'btn-container--new';
+      newBtnContainer.style.display = 'flex';
+      newBtnContainer.style['justify-content'] = 'center';
+      searchBox.appendChild(newBtnContainer);
     } else {
       btnContainer.style.display = '';
     }
@@ -133,6 +152,47 @@ document.getElementById('form').addEventListener(
   },
   false,
 );
+
+const toggleInfo = () => {
+  const infoIsVisible = info.style.display;
+  info.style.height = '0px';
+  if (infoIsVisible === 'flex') {
+    setTimeout(() => (info.style.display = 'none'), 601);
+  } else {
+    info.style.display = 'flex';
+    setTimeout(() => {
+      let height;
+      if (about.style.display === 'none') {
+        height = '120px';
+      } else {
+        height = '222px';
+      }
+      info.style.height = height;
+    }, 10);
+  }
+};
+
+const toggleInstructions = () => {
+  info.style.height = '120px';
+  if (about.style.display !== 'flex' || info.style.display !== 'flex') {
+    toggleInfo();
+  }
+
+  instructions.style.display = 'grid';
+  triangle.style.transform = 'translate(98px, -11px)';
+  about.style.display = 'none';
+};
+
+const toggleAbout = () => {
+  info.style.height = '222px';
+  if (instructions.style.display !== 'grid' || info.style.display !== 'flex') {
+    toggleInfo();
+  }
+
+  triangle.style.transform = 'translate(19px, -11px)';
+  about.style.display = 'flex';
+  instructions.style.display = 'none';
+};
 
 console.log(
   'psst, check out the source code at https://github.com/akambale/trie',
