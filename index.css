@@ -44,7 +44,8 @@ body {
   text-decoration: underline;
 }
 
-.link:visited {
+.link:visited,
+.link {
   color: black;
 }
 
