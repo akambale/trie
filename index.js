@@ -8,7 +8,6 @@ const searchList = document.getElementById('search__results__list');
 const input = document.getElementById('input');
 const svg = document.getElementsByTagName('svg')[0];
 const btnContainer = document.getElementById('search__btn-container');
-const info = document.getElementById('info');
 const instructions = document.getElementById('instructions');
 const about = document.getElementById('about');
 const triangle = document.getElementById('triangle');
@@ -150,37 +149,32 @@ const attachOnClick = (node, word) => {
   };
 };
 
-// shows and hides the info section at the top
-// adjusts height to show the instructions or
-// about content
-const toggleInfo = () => {
-  if (info.classList.value.includes('info--show')) {
-    info.classList.add('info--show');
-  } else {
-    info.classList.remove('info--show');
-  }
-};
-
-// displays instructions and open/closes info section
+// shows instructions and hides about
 const toggleInstructions = () => {
-  if (instructions.classList.value.includes('info--show')) {
-    instructions.classList.remove('info--show');
-    toggleInfo();
+  if (about.classList.value.includes('info--show')) {
+    setTimeout(() => instructions.classList.add('info--show'), 100);
+    about.classList.remove('info--show');
   } else {
-    instructions.classList.add('info--show');
+    if (instructions.classList.value.includes('info--show')) {
+      instructions.classList.remove('info--show');
+    } else {
+      instructions.classList.add('info--show');
+    }
   }
-  about.classList.remove('info--show');
 };
 
-// displays instructions and open/closes about section
+// shows about and hides instructions
 const toggleAbout = () => {
-  if (about.classList.value.includes('info--show')) {
-    about.classList.remove('info--show');
-    toggleInfo();
+  if (instructions.classList.value.includes('info--show')) {
+    setTimeout(() => about.classList.add('info--show'), 100);
+    instructions.classList.remove('info--show');
   } else {
-    about.classList.add('info--show');
+    if (about.classList.value.includes('info--show')) {
+      about.classList.remove('info--show');
+    } else {
+      about.classList.add('info--show');
+    }
   }
-  instructions.classList.remove('info--show');
 };
 
 document.getElementById('form').addEventListener(

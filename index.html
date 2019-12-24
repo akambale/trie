@@ -55,89 +55,98 @@
         />
       </div>
     </header>
-    <section id="info" class="info">
-      <div id="instructions" class="info__instructions">
-        <ol class="info__instructions__list">
-          <li class="info__instructions__list__item">
-            Click
-            <button
-              class="btn-populate info__instructions__button"
-              onclick="populateTrie()"
-            >
-              here
-            </button>
-            to populate the trie with the 10,000 most common english words on
-            the internet (according to Google)
-          </li>
-          <li class="info__instructions__list__item">
-            Watch as the trie is populated with words (note that the population
-            is slowed down for dramatic effect)
-          </li>
-          <li class="info__instructions__list__item">
-            Start searching below for words
-          </li>
-        </ol>
-        <p class="info__instructions__or">OR</p>
-        <ol>
-          <li class="info__instructions__list__item">
-            Open the console and check out
-            <code class="info__instructions__code">window.trie</code>
-          </li>
-          <li class="info__instructions__list__item">
-            Add additional words manually with the following code:
-            <code class="info__instructions__code">
-              window.trie.addChild('YOUR_WORD_HERE');
-            </code>
-          </li>
-          <li class="info__instructions__list__item">
-            Start searching the trie for words
-          </li>
-        </ol>
-      </div>
-      <div id="about" class="info__about">
-        <p>
-          A trie (pronounced the same as tree) is a data structure that makes
-          searching for words faster. If that was too much computer science
-          jargon, try this metaphor. Imagine I gave you a list a of 10,000 words
-          in the order of their frequency. For example, the words <i>the</i>,
-          <i>a</i>, <i>of</i> are near the top of the list. Whereas the word
-          <i>among</i> is somewhere around 450 words into the list.
-        </p>
-        <p>
-          If I then told you to find the word <i>scholar</i>, you would have no
-          idea where to start. Your best method is to probably skim the list
-          word for word until you find <i>scholar</i>. This method is
-          inefficient and rather tedious. Computers don't mind tedium, but
-          inefficiency can be a problem. This is where a trie comes into play.
-        </p>
-        <p>
-          Imagine that I give you the word <i>and</i> on a piece of paper and
-          tell you to put it inside of a magic folder. Once you open the folder,
-          you're surprised to find 26 other folders, labeled <b>A</b> through
-          <b>Z</b>. Since our word is <i>and</i>, we put it into the
-          <b>A</b> folder. But once we open the <b>A</b> folder, we find that
-          there are another set of folders labeled <b>A</b> through <b>Z</b>.
-          What folder do we put our word into now?
-        </p>
-        <p>
-          Since we already are in the <b>A</b> folder, it doesn't make sense to
-          put this word into another <b>A</b> folder. Instead, we move on to the
-          second letter of <i>and</i>, <b>N</b> how exciting! But as you might
-          have guessed, inside the <b>N</b> folder, we have another set of
-          folders. Within that, we move into the <b>D</b> folder. At this point,
-          we have run out of letters, so we put our word inside. The path looks
-          like this: Magic Folder > A Folder > N Folder > D Folder.
-        </p>
-        <p>
-          When you click on the <i>populate trie</i> button below, each word in
-          the 10,000 list I gave you earlier is placed into the magic folder.
-          Now if I ask you to find the word <i>scholar</i>, it's much easier.
-          You start by opening the <b>S</b> folder. Within that, you open the
-          <b>C</b> folder. After that the <b>H</b> folder, and so on until you
-          find the word <i>scholar</i>. Isn't this much faster than skimming the
-          entire list?
-        </p>
-      </div>
+    <section id="instructions" class="info info__instructions">
+      <h4 class="info__heading">Instructions</h4>
+      <ol class="info__instructions__list">
+        <li class="info__instructions__list__item">
+          Click
+          <button
+            class="btn-populate info__instructions__button"
+            onclick="populateTrie()"
+          >
+            here
+          </button>
+          to populate the trie with the 10,000 most common english words on the
+          internet (according to Google)
+        </li>
+        <li class="info__instructions__list__item">
+          Watch as the trie is populated with words (note that the population is
+          slowed down for dramatic effect)
+        </li>
+        <li class="info__instructions__list__item">
+          Start searching below for words
+        </li>
+      </ol>
+      <p class="info__instructions__or">OR</p>
+      <ol class="info__instructions__list">
+        <li class="info__instructions__list__item">
+          Open the console and check out
+          <code class="info__instructions__code">window.trie</code>
+        </li>
+        <li class="info__instructions__list__item">
+          Add additional words manually with the following code:
+          <code class="info__instructions__code">
+            trie.addChild('YOUR_WORD_HERE');
+          </code>
+        </li>
+        <li class="info__instructions__list__item">
+          Start searching the trie for words
+        </li>
+      </ol>
+    </section>
+    <section id="about" class="info info__about">
+      <h4 class="info__heading">About</h4>
+      <p>
+        A trie (pronounced the same as tree) is a data structure that allows for
+        a search algorithm with a logarithmic time complexity. If that was too
+        much computer science jargon, just know that searching the trie is very
+        fast. How fast exactly? Try this metaphor: Imagine I gave you a list a
+        of 10,000 words in a random order.
+      </p>
+      <p>
+        If I then told you to find the word <b>scholar</b>, you would have no
+        idea where to start. Your best method is to probably scan the entire
+        list from the beginning word for word until you find <b>scholar</b>.
+        This method is inefficient and rather tedious. Computers don't mind
+        tedium, but inefficiency can be a problem. This is where a trie comes
+        into play.
+      </p>
+      <p>
+        Imagine that I give you the word <b>and</b> on a piece of paper and tell
+        you to put it inside of a magic folder. Once you open the folder, you're
+        surprised to find 26 other folders, labeled <i>A</i> through <i>Z</i>.
+        Since our word is <b>and</b>, we put it into the <i>A</i> folder. But
+        once we open the <i>A</i> folder, we find that there are another set of
+        folders labeled <i>A</i> through <i>Z</i>. What folder do we put our
+        word into now?
+      </p>
+      <p>
+        Since we already are in the <i>A</i> folder, it doesn't make sense to
+        put this word into another <i>A</i> folder. Instead, we move on to the
+        second letter of <b>and</b>, <i>N!</i> But as you might have guessed,
+        inside the <i>N</i> folder, we have another set of <i>A</i> through
+        <i>Z</i> folders. With one letter left, we move into the
+        <i>D</i> folder. Once we open the D folder, there are another set of
+        <i>A</i> through <i>Z</i> folders. But at this point, we have run out of
+        letters, so we put our word inside the front of the D folder, and don't
+        nest it any further. The path looks like this: Magic Folder > A Folder >
+        N Folder > D Folder.
+      </p>
+      <p>
+        When you click on the <b>populate trie</b> button below, each word in
+        the 10,000 list I gave you earlier is placed into the magic folder. Now
+        if I ask you to find the word <b>scholar</b>, it's much easier. You
+        start by opening the <i>S</i> folder. Within that, you open the
+        <i>C</i> folder. After that the <i>H</i> folder, and so on until you
+        find the word <b>scholar</b>. Isn't this much faster than skimming the
+        entire list?
+      </p>
+      <p>
+        To see just how much faster, take a look at the bottom right corner of
+        the search results. Each time you type into the search bar, a trie
+        search (magic folder method) and a linear search (scanning the entire
+        list) are conducted and timed. See for yourself the difference!
+      </p>
     </section>
     <section>
       <h1 class="heading-title">
