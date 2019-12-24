@@ -12,6 +12,7 @@ const info = document.getElementById('info');
 const instructions = document.getElementById('instructions');
 const about = document.getElementById('about');
 const triangle = document.getElementById('triangle');
+const metrics = document.getElementById('search__metrics');
 
 // Variables and methods to modify user feedback as
 // trie is being populated
@@ -38,7 +39,7 @@ const updateNodeCount = () => {
 const populateTrie = () => {
   togglePopulateButtons();
 
-  // the much faster way to populate the trie
+  // the much faster way to populate the trie which takes about 1.6 seconds
   // window.dictionary.forEach(word => trie.addChild(word));
 
   // slowing down trie population for dramatic effect in UX
@@ -78,17 +79,27 @@ const search = () => {
   const val = input.value.toLowerCase();
 
   if (val.length !== 0) {
-    const words = findTenValidChildWords(val, window.trie);
+    const t0 = performance.now();
+    const words = trieLogSearch(val, window.trie);
+    const t1 = performance.now();
+    linearSearch(val, window.dictionary);
+    const t2 = performance.now();
 
     // if there are any search results
     if (words.length > 0) {
+      const tenWords = pullFirstTenVals(words);
       btnContainer.style.display = 'none';
       searchBox.style.display = '';
 
-      words.forEach(word => {
+      tenWords.forEach(word => {
         const node = createLiTextNode(word, val);
         searchList.appendChild(node);
       });
+
+      const logTime = Math.round((t1 - t0) * 100) / 100;
+      const linTime = Math.round((t2 - t1) * 100) / 100;
+      const multiplier = Math.round(((t2 - t1) / (t1 - t0)) * 100) / 100;
+      metrics.innerHTML = `Trie Search: ${logTime}ms &nbsp; Linear Search: ${linTime}ms &nbsp; ${multiplier}x faster`;
     }
   }
 };

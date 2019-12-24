@@ -1,21 +1,16 @@
-// original search method which returned
-// search results randomly
-const oldSearchMethod = (str, trie) => {
+// method to search trie for valid
+// children words based on user input
+const trieLogSearch = (str, trie) => {
   let storage = [];
 
   const findValidChildren = (str, trie) => {
+    // traverses the tree from the top until we
+    // find the node that matches the search value
     if (str.length > 0) {
       if (!trie[str[0]]) {
         return;
       }
       findValidChildren(str.slice(1), trie[str[0]]);
-      return;
-    }
-
-    // we only want to provide 10 search result suggestions
-    // once we have reached that point, we stop our recursive
-    // search
-    if (storage.length >= 10) {
       return;
     }
 
@@ -25,6 +20,7 @@ const oldSearchMethod = (str, trie) => {
 
     for (let key in trie) {
       // ignoring object properties like isWord, val
+      // and only traversing down letter branches
       if (key.length === 1) {
         findValidChildren(str, trie[key]);
       }
@@ -32,53 +28,30 @@ const oldSearchMethod = (str, trie) => {
   };
 
   findValidChildren(str, trie);
-
-  // search time is O(log n), very quick
-  // so we don't have to worry about async
-  const copy = storage.slice();
-  storage = [];
-  return copy;
+  return storage;
 };
 
-// method to search trie for valid children words
-// based on user input
-const findTenValidChildWords = (str, trie) => {
-  let storage = [];
-
-  const findValidChildren = (str, trie) => {
-    if (str.length > 0) {
-      if (!trie[str[0]]) {
-        return;
-      }
-      findValidChildren(str.slice(1), trie[str[0]]);
-      return;
+// method to search dictionary list for valid
+// children words based on user input
+const linearSearch = (str, list) => {
+  const storage = [];
+  list.forEach(word => {
+    if (word.slice(0, str.length) === str) {
+      storage.push(word);
     }
+  });
+  return storage;
+};
 
-    if (trie.isWord === true) {
-      storage.push({ val: trie.val, depth: trie.depth });
-    }
-
-    for (let key in trie) {
-      // ignoring object properties like isWord, val
-      if (key.length === 1) {
-        findValidChildren(str, trie[key]);
-      }
-    }
-  };
-
-  findValidChildren(str, trie);
-
-  // search time is O(log n), very quick
-  // so we don't have to worry about async
-  storage.sort(alphaSearch);
+const pullFirstTenVals = arr => {
+  arr.sort(alphaSearch);
   const valArr = [];
-  if (storage.length > 0) {
-    const loopLength = storage.length < 10 ? storage.length : 10;
+  if (arr.length > 0) {
+    const loopLength = arr.length < 10 ? arr.length : 10;
     for (let i = 0; i < loopLength; i++) {
-      valArr.push(storage[i].val);
+      valArr.push(arr[i]);
     }
   }
-  storage = [];
   return valArr;
 };
 
@@ -86,10 +59,10 @@ const findTenValidChildWords = (str, trie) => {
 // and then if lengths are the same,
 // it then sorts alphabetically
 const alphaSearch = (a, b) => {
-  if (a.depth < b.depth) {
+  if (a.length < b.length) {
     return -1;
-  } else if (a.depth === b.depth) {
-    if (a.val < b.val) {
+  } else if (a.length === b.length) {
+    if (a < b) {
       return -1;
     } else {
       return 1;

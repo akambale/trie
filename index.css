@@ -161,6 +161,7 @@ body {
   overflow: hidden;
   padding: 10px 0px;
   width: 582px;
+  position: relative;
 }
 
 .search:hover,
@@ -241,6 +242,19 @@ body {
 .search__button:disabled {
   opacity: 0.5;
   border: none;
+}
+
+.search__metrics {
+  position: absolute;
+  bottom: 2px;
+  right: 20px;
+  color: #70757a;
+  font-style: italic;
+  font-size: 10px;
+}
+
+.search__metrics:hover {
+  text-decoration: underline;
 }
 
 .footer {

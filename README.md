@@ -40,7 +40,7 @@ After lamenting this frustration to an engineer with more interviewing experienc
 
 Inspired by this, I figured I'd try to build a trie demo from scratch. To add some additional ambiguity and challenge, I thought to try this without knowing any more about tries aside from the one web-search I had done above.
 
-## Tackling The Challenge
+## Constructing The Trie
 
 I was a bit surprised that it took me a few hours to get the trie class working. I had the basic structure outlined quickly. See below:
 
@@ -99,9 +99,13 @@ And the same tree after adding an input of "a" as well as "and"
 }
 ```
 
-To truly demo the trie, I needed to create a search suggestion function; a method that would take your partial search string and suggest possible words you may be trying to type out. I arrived at a simple recursive one `oldSearchMethod` as seen in`trie.js`. It returns 10 search results before terminating. It picks those 10 results by going down all the child branches of the corresponding search string node. If there are more than 10 results, it chooses 10 from the first child branch that was created; i.e., it depends on which child key comes in order first. If _car_ was inserted into the trie before _cat_, then **r** will appear in order before **t** as a child branch and therefore, searching the string "ca" will return results for "car, care, career, careers".
+## Searching
 
-But since we are implementing a dictionary search, random search results won't cut it. Because the trie only has a maximum depth of 19 nodes, I was confident that an unrestricted recursive search method would traverse the entire sub-tree, find all matching child words, and terminate quickly; even if we found 5,000 search results. I then sorted the results first by length, and then by alphabetical order. Now, searching "ca" will return results like "can, cap, car, cat, cant, cart, cast." See this method `findTenValidChildWords` in `trie.js`.
+To truly demo the trie, I needed to create a search suggestion function; a method that would take your partial search string and suggest possible words you may be trying to type out. I wrote the method `trieLogSearch` as seen in`search.js`. It finds the node in the trie which matches the search input, and then recurses down all the child nodes finding valid words as search results.
+
+To contrast, I also wrote `linearSearch` also found in `search.js`. This method loops through the dictionary array and determines if the partial search strings matches the first few characters of that word. If so, it adds it to the search results.
+
+When the user searches, they'll receive search results from `trieLogSearch`. But both search methods are invoked sequentially and their performance is compared and displayed at the bottom of the results.
 
 ## The UI
 
