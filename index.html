@@ -34,22 +34,28 @@
       href="https://fonts.googleapis.com/css?family=Lato&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header class="header">
       <div class="header__link-container">
-        <a class="link" onclick="toggleAbout()">About</a>
-        <a class="link" onclick="toggleInstructions()">Instructions</a>
-      </div>
-      <div class="header__link-container header__link-container--left">
         <a class="link" href="https://github.com/akambale/trie">Github Repo</a>
         <a class="link" href="http://amoghk.com">My Website</a>
       </div>
+      <div class="header__link-container header__link-container--right">
+        <a class="link" onclick="toggleInstructions()">Instructions</a>
+        <a class="link" onclick="toggleAbout()">About</a>
+        <img
+          class="header__picture"
+          src="https://avatars3.githubusercontent.com/u/8716375?s=400&u=48a94ab32140f96846bd1af14688ad94ad20c01a&v=4"
+          onclick="toggleAbout()"
+        />
+      </div>
     </header>
     <section id="info" class="info">
-      <div id="triangle" class="info__triangle">
-        <div></div>
-      </div>
       <div id="instructions" class="info__instructions">
         <ol class="info__instructions__list">
           <li class="info__instructions__list__item">
@@ -75,13 +81,13 @@
         <ol>
           <li class="info__instructions__list__item">
             Open the console and check out
-            <span class="info__instructions__code">window.trie</span>
+            <code class="info__instructions__code">window.trie</code>
           </li>
           <li class="info__instructions__list__item">
             Add additional words manually with the following code:
-            <span class="info__instructions__code">
+            <code class="info__instructions__code">
               window.trie.addChild('YOUR_WORD_HERE');
-            </span>
+            </code>
           </li>
           <li class="info__instructions__list__item">
             Start searching the trie for words

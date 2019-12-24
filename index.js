@@ -154,46 +154,33 @@ const attachOnClick = (node, word) => {
 // adjusts height to show the instructions or
 // about content
 const toggleInfo = () => {
-  const infoIsVisible = info.style.display;
-  info.style.height = '0px';
-  if (infoIsVisible === 'flex') {
-    setTimeout(() => (info.style.display = 'none'), 601);
+  if (info.classList.value.includes('info--show')) {
+    info.classList.add('info--show');
   } else {
-    info.style.display = 'flex';
-    setTimeout(() => {
-      let height;
-      if (about.style.display === 'none') {
-        height = '120px';
-      } else {
-        height = '222px';
-      }
-      info.style.height = height;
-    }, 10);
+    info.classList.remove('info--show');
   }
 };
 
 // displays instructions and open/closes info section
 const toggleInstructions = () => {
-  info.style.height = '120px';
-  if (about.style.display !== 'flex' || info.style.display !== 'flex') {
+  if (instructions.classList.value.includes('info--show')) {
+    instructions.classList.remove('info--show');
     toggleInfo();
+  } else {
+    instructions.classList.add('info--show');
   }
-
-  instructions.style.display = 'grid';
-  triangle.style.transform = 'translate(98px, -11px)';
-  about.style.display = 'none';
+  about.classList.remove('info--show');
 };
 
 // displays instructions and open/closes about section
 const toggleAbout = () => {
-  info.style.height = '222px';
-  if (instructions.style.display !== 'grid' || info.style.display !== 'flex') {
+  if (about.classList.value.includes('info--show')) {
+    about.classList.remove('info--show');
     toggleInfo();
+  } else {
+    about.classList.add('info--show');
   }
-
-  triangle.style.transform = 'translate(19px, -11px)';
-  about.style.display = 'flex';
-  instructions.style.display = 'none';
+  instructions.classList.remove('info--show');
 };
 
 document.getElementById('form').addEventListener(

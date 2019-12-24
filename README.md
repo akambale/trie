@@ -105,7 +105,7 @@ To truly demo the trie, I needed to create a search suggestion function; a metho
 
 To contrast, I also wrote `linearSearch` also found in `search.js`. This method loops through the dictionary array and determines if the partial search strings matches the first few characters of that word. If so, it adds it to the search results.
 
-When the user searches, they'll receive search results from `trieLogSearch`. But both search methods are invoked sequentially and their performance is compared and displayed at the bottom of the results.
+When the user searches, they'll receive search results from `trieLogSearch`. But both search methods are invoked sequentially and their performance is compared and displayed at the bottom of the results. Here, it is very easy to visualize the benefits of an algorithm with logarithmic time.
 
 ## The UI
 
