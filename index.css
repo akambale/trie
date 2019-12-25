@@ -173,6 +173,16 @@ body {
   display: block;
 }
 
+@media (max-width: 400px) {
+  #about.info {
+    right: calc((100% - 356px) / 2);
+  }
+
+  #instructions.info {
+    right: calc((100% - 330px) / 2);
+  }
+}
+
 .heading-title {
   font-family: 'Lato', sans-serif;
   margin: 100px 0 25px 0;
@@ -299,7 +309,7 @@ body {
 
 @media (max-width: 800px) {
   .main {
-    max-width: 400px;
+    width: 90%;
   }
 
   .search {
@@ -312,6 +322,15 @@ body {
 
   .heading-title > * {
     font-size: 40px;
+  }
+
+  .search__button {
+    font-size: 10px;
+    width: 100px;
+  }
+
+  .search__metrics {
+    font-size: 8px;
   }
 }
 
@@ -346,6 +365,12 @@ body {
 
   .footer__number__container > p {
     text-align: center;
+  }
+}
+
+@media (max-height: 400px) {
+  .footer {
+    visibility: hidden;
   }
 }
 
