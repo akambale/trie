@@ -181,6 +181,10 @@ body {
   #instructions.info {
     right: calc((100% - 330px) / 2);
   }
+
+  .header__picture {
+    display: none;
+  }
 }
 
 .heading-title {
@@ -361,10 +365,15 @@ body {
   .footer__number__container {
     flex-direction: column;
     flex-wrap: wrap;
+    width: 100%;
   }
 
   .footer__number__container > p {
     text-align: center;
+  }
+
+  .header__link-container--right {
+    padding: 0;
   }
 }
 
