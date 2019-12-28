@@ -98,7 +98,12 @@ const search = () => {
       const logTime = Math.round((t1 - t0) * 100) / 100;
       const linTime = Math.round((t2 - t1) * 100) / 100;
       const multiplier = Math.round(((t2 - t1) / (t1 - t0)) * 100) / 100;
-      metrics.innerHTML = `Trie Search: ${logTime}ms &nbsp; Linear Search: ${linTime}ms &nbsp; ${multiplier}x faster`;
+      if (multiplier === Infinity || isNaN(multiplier)) {
+        metrics.innerHTML =
+          'The browser you are using rounds its performance metrics up to the nearest millisecond. Please try using this feature in Google Chrome which will measure performance to a microsecond or lesser';
+      } else {
+        metrics.innerHTML = `Trie Search: ${logTime}ms &nbsp; Linear Search: ${linTime}ms &nbsp; ${multiplier}x faster`;
+      }
     }
   }
 };
