@@ -2,7 +2,7 @@
 
 tl;dr - I briefly researched what a trie was, and decided to implement one without referencing any documentation or reading best practices. I intend to demonstrate my ability to handle ambiguity in software engineering challenges. I also created a UI and live demo for this project based on Google's homepage, hopefully demonstrating my ability to follow a wireframe.
 
-See the project in action[here](https://akambale.github.io/trie/).
+See the project in action [here](https://akambale.github.io/trie/).
 
 ## Some companies are bad at front-end interviewing
 
